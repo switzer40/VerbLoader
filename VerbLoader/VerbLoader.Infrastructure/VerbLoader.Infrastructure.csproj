@@ -5,12 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+
     <ProjectReference Include="..\VerbLoader.Core\VerbLoader.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Repositories\EntityFramework\" />
+
   </ItemGroup>
 
 </Project>
