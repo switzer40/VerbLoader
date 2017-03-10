@@ -18,5 +18,26 @@ namespace VerbLoader.Core.Entities
         public string WyV { get; set; }
         public string OniP { get; set; }
         public string OniV { get; set; }
+        public override void Copy(VerbWithGerman other)
+        {
+            base.Copy(other);
+            if (other.GetType() == typeof(PolishVerb))
+            {
+                PolishVerb that = (PolishVerb)other;
+                JaP = that.JaP;
+                JaV = that.JaV;
+                TyP = that.TyP;
+                TyV = that.TyV;
+                OnP = that.OnP;
+                OnV = that.OnV;
+                MyP = that.MyP;
+                MyV = that.MyV;
+                WyP = that.WyP;
+                WyV = that.WyV;
+                OniP = that.OniP;
+                OniV = that.OniV;
+            }
+        }
     }
+    
 }
