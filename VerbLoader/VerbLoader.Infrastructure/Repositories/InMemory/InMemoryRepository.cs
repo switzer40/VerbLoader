@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using VerbLoader.Core.Entities;
 using VerbLoader.Core.Interfaces;
 using VerbLoader.Core.ViewModels;
 
 namespace VerbLoader.Infrastructure.Repositories.InMemory
 {
-   public class InMemoryRepository<T> : IRepository<T> where T : VerbWithGermanViewModel
+   public class InMemoryRepository<T> : IRepository<T> where T : VerbWithGerman
     {
         private readonly Dictionary<int, T> _store;
         private static int _nextKey = 1;
@@ -18,37 +19,45 @@ namespace VerbLoader.Infrastructure.Repositories.InMemory
         }
         public T Add(T t)
         {
-            throw new NotImplementedException();
+            if (t.Id > 0) 
+            {
+                return t;
+            }
+            t.Id = _nextKey++;
+            _store.Add(t.Id, t);
+            return t;
         }
 
         public void Delete(T t)
         {
-            throw new NotImplementedException();
+            _store.Remove(t.Id);
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return _store[id];
         }
 
         public IEnumerable<T> List()
         {
-            throw new NotImplementedException();
+            return _store.Values;
         }
 
         public IEnumerable<T> List(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            Func<T, bool> f = predicate.Compile();
+            return List(t => f(t));
         }
 
         public IEnumerable<T> List(ISpecification<T> specification)
         {
-            throw new NotImplementedException();
+            return List(specification.Predicate);
         }
 
         public void Update(T t)
         {
-            throw new NotImplementedException();
+            T storedValue = GetById(t.Id);
+            storedValue.Copy(t);
         }
     }
 }
