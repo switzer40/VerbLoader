@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 using VerbLoader.Core.SharedKernel;
+using VerbLoader.Core.ViewModels;
 
 namespace VerbLoader.Core.Interfaces
 {
-    interface IRepository<T> where T : BaseEntity
+    public interface IRepository<T> where T : VerbWithGermanViewModel
     {
         T Add(T t);
         void Delete(T t);

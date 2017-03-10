@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VerbLoader.Core.SharedKernel;
 
-namespace VerbLoader.Core.Entities
+namespace VerbLoader.Core.ViewModels
 {
-    public class PrimitiveVerb : VerbWithGerman
-    {        
+    public class PrimitiveVerbViewModel : VerbWithGermanViewModel
+    {
         public string Imperfective { get; set; }
         public string Perfective { get; set; }
         public bool Reflexive { get; set; }
