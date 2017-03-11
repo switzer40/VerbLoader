@@ -4,28 +4,34 @@ using System.Linq.Expressions;
 using System.Text;
 using VerbLoader.Core.Entities;
 using VerbLoader.Core.Interfaces;
-using VerbLoader.Core.ViewModels;
 
 namespace VerbLoader.Infrastructure.Repositories.InMemory
 {
-   public class InMemoryRepository<T> : IRepository<T> where T : VerbWithGerman
+
+    public class InMemoryRepository<T> : IRepository<T> where T : VerbWithGerman
+
     {
         private readonly Dictionary<int, T> _store;
         private static int _nextKey = 1;
-
         public InMemoryRepository(Dictionary<int, T> store)
         {
             _store = store;
+            _nextKey = 1;
         }
         public T Add(T t)
         {
-            if (t.Id > 0) 
+
+            if (t.Id > 9)
             {
                 return t;
             }
-            t.Id = _nextKey++;
-            _store.Add(t.Id, t);
-            return t;
+            else
+            {
+                t.Id = _nextKey++;
+                _store[t.Id] = t;
+                return t;
+            }
+
         }
 
         public void Delete(T t)
@@ -35,7 +41,17 @@ namespace VerbLoader.Infrastructure.Repositories.InMemory
 
         public T GetById(int id)
         {
-            return _store[id];
+
+            if (_store.ContainsKey(id))
+            {
+                return _store[id];
+            }
+            else
+            {
+                return null;
+            }
+            
+
         }
 
         public IEnumerable<T> List()
@@ -46,7 +62,9 @@ namespace VerbLoader.Infrastructure.Repositories.InMemory
         public IEnumerable<T> List(Expression<Func<T, bool>> predicate)
         {
             Func<T, bool> f = predicate.Compile();
-            return List(t => f(t));
+
+            return List(t => f(t));            
+
         }
 
         public IEnumerable<T> List(ISpecification<T> specification)
@@ -56,8 +74,10 @@ namespace VerbLoader.Infrastructure.Repositories.InMemory
 
         public void Update(T t)
         {
-            T storedValue = GetById(t.Id);
-            storedValue.Copy(t);
+
+            T storedEntity = GetById(t.Id);
+            storedEntity.Copy(t);
+
         }
     }
 }
