@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Text;
-using VerbLoader.Core.Interfaces;
-using VerbLoader.Core.ViewModels;
+using VerbLoader.Core.Entities;
 
 namespace VerbLoader.Infrastructure.Repositories.InMemory
 {
-    public class InMemoryPrimitiveVerbRepository : InMemoryRepository<PrimitiveVerbViewModel>, IPrimitiveVerbRepository
+    public class InMemoryPrimitiveVerbRepository : InMemoryVerbWithGermanRepository
     {
-        public InMemoryPrimitiveVerbRepository(Dictionary<int, PrimitiveVerbViewModel> store) : base(store)
+        public InMemoryPrimitiveVerbRepository(Dictionary<int, VerbWithGerman> store) : base(store)
         {
         }
 
-        public VerbWithGermanViewModel GetWithGerman(string german)
+        public new PrimitiveVerb GetByGerman(string german)
         {
-            throw new NotImplementedException();
+            return (PrimitiveVerb)base.GetByGerman(german);
         }
     }
 }

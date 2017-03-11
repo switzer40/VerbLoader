@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using VerbLoader.Core.Entities;
 using VerbLoader.Core.SharedKernel;
 using VerbLoader.Core.ViewModels;
 
 namespace VerbLoader.Core.Interfaces
 {
-    public interface IRepository<T> where T : VerbWithGermanViewModel
+    public interface IRepository<T> where T : VerbWithGerman
     {
         T Add(T t);
         void Delete(T t);

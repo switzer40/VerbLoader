@@ -13,5 +13,20 @@ namespace VerbLoader.Core.Entities
         public int ConjugationClass { get; set; }
         public string PStem { get; set; }
         public string VStem { get; set; }
+
+        public override void Copy(VerbWithGerman other)
+        {
+            if (other.GetType() == typeof(PrimitiveVerb))
+            {
+                PrimitiveVerb that = (PrimitiveVerb)other;
+                German = that.German;
+                Imperfective = that.Imperfective;
+                Perfective = that.Perfective;
+                Reflexive = that.Reflexive;
+                ConjugationClass = that.ConjugationClass;
+                PStem = that.PStem;
+                VStem = that.VStem;
+            }
+        }
     }
 }
