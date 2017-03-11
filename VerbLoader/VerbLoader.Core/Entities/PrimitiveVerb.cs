@@ -12,7 +12,9 @@ namespace VerbLoader.Core.Entities
         public bool Reflexive { get; set; }
         public int ConjugationClass { get; set; }
         public string PStem { get; set; }
+
         public string VStem { get; set; }
+
 
         public override void Copy(VerbWithGerman other)
         {
@@ -27,6 +29,8 @@ namespace VerbLoader.Core.Entities
                 PStem = that.PStem;
                 VStem = that.VStem;
             }
+
+
         }
     }
 }
