@@ -9,7 +9,10 @@ namespace VerbLoader.Core.Entities
     {
         public string German { get; set; }
 
-        public abstract void Copy(VerbWithGerman other); 
+
+        public abstract void Copy(VerbWithGerman other);
+       
+
         
     }
 }
