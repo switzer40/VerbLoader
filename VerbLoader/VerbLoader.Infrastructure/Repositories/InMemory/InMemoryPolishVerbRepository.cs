@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Text;
 using VerbLoader.Core.Entities;
 
+using VerbLoader.Core.Interfaces;
+
 namespace VerbLoader.Infrastructure.Repositories.InMemory
 {
-    public class InMemoryPolishVerbRepository : InMemoryVerbWithGermanRepository
+    public class InMemoryPolishVerbRepository : InMemoryVerbWithGermanRepository, IPolishVerbRepository
+
     {
         public InMemoryPolishVerbRepository(Dictionary<int, VerbWithGerman> store) : base(store)
         {
         }
 
-        public new PolishVerb GetByGerman(string german)
+
+        PolishVerb IPolishVerbRepository.GetByGerman(string german)
+r
         {
             return (PolishVerb)base.GetByGerman(german);
         }

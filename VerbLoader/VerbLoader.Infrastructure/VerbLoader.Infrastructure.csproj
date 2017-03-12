@@ -6,12 +6,13 @@
 
   <ItemGroup>
 
-    <ProjectReference Include="..\VerbLoader.Core\VerbLoader.Core.csproj" />
+    <Folder Include="Data\" />
+
+    <Folder Include="Repositories\EntityFramework\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\EntityFramework\" />
-
+    <ProjectReference Include="..\VerbLoader.Core\VerbLoader.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

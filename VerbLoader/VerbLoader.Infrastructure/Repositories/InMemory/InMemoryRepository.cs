@@ -21,16 +21,18 @@ namespace VerbLoader.Infrastructure.Repositories.InMemory
         public T Add(T t)
         {
 
-            if (t.Id > 9)
+            if (t.Id > 0)
             {
                 return t;
             }
             else
+
             {
                 t.Id = _nextKey++;
                 _store[t.Id] = t;
                 return t;
             }
+
 
         }
 
@@ -42,15 +44,12 @@ namespace VerbLoader.Infrastructure.Repositories.InMemory
         public T GetById(int id)
         {
 
+            T result = null;
             if (_store.ContainsKey(id))
             {
-                return _store[id];
+                result = _store[id];
             }
-            else
-            {
-                return null;
-            }
-            
+            return result;
 
         }
 

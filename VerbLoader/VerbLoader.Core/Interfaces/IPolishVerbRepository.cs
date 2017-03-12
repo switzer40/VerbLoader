@@ -5,8 +5,10 @@ using VerbLoader.Core.Entities;
 
 namespace VerbLoader.Core.Interfaces
 {
-    public interface IPolishVerbRepository : IRepository<PolishVerb>
+
+    public interface IPolishVerbRepository : IVerbWithGermanRepository
     {
-        new PolishVerb GetByGerman(string german);
+        new PolishVerb GetByGerman(string gewrman);
+
     }
 }
