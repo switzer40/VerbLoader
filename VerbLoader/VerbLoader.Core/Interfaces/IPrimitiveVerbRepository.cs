@@ -6,8 +6,8 @@ using VerbLoader.Core.ViewModels;
 
 namespace VerbLoader.Core.Interfaces
 {
-    public interface IPrimitiveVerbRepository : IRepository<PrimitiveVerb>
+    public interface IPrimitiveVerbRepository : IVerbWithGermanRepository
     {
-        VerbWithGerman GetWithGerman(string german);
+        new PrimitiveVerb GetByGerman(string german);
     }
 }

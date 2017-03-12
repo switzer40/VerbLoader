@@ -4,28 +4,30 @@ using System.Linq.Expressions;
 using System.Text;
 using VerbLoader.Core.Entities;
 using VerbLoader.Core.Interfaces;
-using VerbLoader.Core.ViewModels;
 
 namespace VerbLoader.Infrastructure.Repositories.InMemory
 {
-   public class InMemoryRepository<T> : IRepository<T> where T : VerbWithGerman
+    public class InMemoryRepository<T> : IRepository<T> where T : VerbWithGerman
     {
         private readonly Dictionary<int, T> _store;
         private static int _nextKey = 1;
-
         public InMemoryRepository(Dictionary<int, T> store)
         {
             _store = store;
+            _nextKey = 1;
         }
         public T Add(T t)
         {
-            if (t.Id > 0) 
+            if (t.Id > 0)
             {
                 return t;
             }
-            t.Id = _nextKey++;
-            _store.Add(t.Id, t);
-            return t;
+            else
+            {
+                t.Id = _nextKey++;
+                _store[t.Id] = t;
+                return t;
+            }
         }
 
         public void Delete(T t)
@@ -35,7 +37,12 @@ namespace VerbLoader.Infrastructure.Repositories.InMemory
 
         public T GetById(int id)
         {
-            return _store[id];
+            T result = null;
+            if (_store.ContainsKey(id))
+            {
+                result = _store[id];
+            }
+            return result;
         }
 
         public IEnumerable<T> List()
@@ -56,8 +63,8 @@ namespace VerbLoader.Infrastructure.Repositories.InMemory
 
         public void Update(T t)
         {
-            T storedValue = GetById(t.Id);
-            storedValue.Copy(t);
+            T storedEntity = GetById(t.Id);
+            storedEntity.Copy(t);
         }
     }
 }
