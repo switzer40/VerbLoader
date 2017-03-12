@@ -16,7 +16,6 @@ namespace VerbLoader.Infrastructure.Repositories.InMemory
 
 
         PolishVerb IPolishVerbRepository.GetByGerman(string german)
-r
         {
             return (PolishVerb)base.GetByGerman(german);
         }
