@@ -15,7 +15,9 @@ namespace VerbLoader.Infrastructure.Repositories.InMemory
 
         public VerbWithGerman GetByGerman(string german)
         {
+
             return List(v => v.German.Contains(german)).Single();
+
         }
     }
 }
